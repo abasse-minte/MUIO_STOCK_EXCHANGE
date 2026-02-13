@@ -1,12 +1,15 @@
 package mseAPP.USERS;
 
 import mseAPI.objectBehavior.ObjectModification;
+import mseAPI.constantClass.constantClass;
+import mseAPI.printClass.printClass;
+
 
 /*
 * Implements the "IUserInformation" interface
 * Implements the "IUserChecksANDCorrects" interface
 */
-public class User implements IUserInformation, IUserChecksANDCorrects {
+public class User implements IUserInformation, IUserChecksANDCorrects, IUserTax {
     // ATTRIBUTES:
 
     /*
@@ -17,12 +20,13 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
     * sizeUsernameMax: size username max
     * sizeUsernameMix: size username min
     */
+    String type;
     public String username;
-    public int age;
+    public String typeUser;
+    public float profits;
+    public float tax;
     public final int sizeAgeMax;
     public final int sizeAgeMin;
-    public final int sizeUsernameMax;
-    public final int sizeUsernameMin;
 
 
 
@@ -35,13 +39,15 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
     public User(String username) throws Exception{
         this.sizeAgeMax = 3;
         this.sizeAgeMin = 1;
-        this.sizeUsernameMax = 50;
-        this.sizeUsernameMin = 3;
+        this.typeUser = "unknown";
+        this.tax = 0;
+        this.profits = 1;
         username = ObjectModification.removeSpace(username);
         if (!usernameSize(username) || !validUsername(username)){
             throw new Exception("Invalid username");
         }
         this.username = username;
+
     }
 
 
@@ -62,8 +68,8 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      * return void
      */
     @Override
-    public void setAge(int age){
-        this.age = age;
+    public void setTypeUser(String typeUser){
+        this.typeUser = typeUser;
     }
 
     /*
@@ -82,8 +88,8 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      * return int
      */
     @Override
-    public int getAge(){
-        return age;
+    public String getTypeUser(){
+        return typeUser;
     }
 
     /*
@@ -93,7 +99,7 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      */
     @Override
     public void printAge(){
-        System.out.println("You are " + age + " years old\n");
+        System.out.println("You are " + typeUser + " years old\n");
     }
 
     /*
@@ -103,7 +109,7 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      */
     @Override
     public void printName(){
-        System.out.println("Hi " + username + " !\n");
+        printClass.printMainSentence(this.username + " ?! It is really you ??");
     }
 
     /*
@@ -113,7 +119,7 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      */
     @Override
     public boolean usernameSize(String username){
-        return username.length() <= sizeUsernameMax && username.length() >= sizeUsernameMin;
+        return username.length() <= constantClass.fifty && username.length() >= constantClass.three;
     }
 
     /*
@@ -123,10 +129,15 @@ public class User implements IUserInformation, IUserChecksANDCorrects {
      */
     @Override
     public boolean validUsername(String username){
-        return this.usernameSize(username) && ObjectModification.containSpace(username) && !username.isEmpty() && !username.matches(".*\\d.*");
+        return this.usernameSize(username) && !ObjectModification.containSpace(username) && !username.isEmpty() && !username.matches(".*\\d.*");
     }
 
+    // IUser Tax Interface
 
+    @Override
+    public float taxesPayable(){
+        return profits;
+    }
 
 
 

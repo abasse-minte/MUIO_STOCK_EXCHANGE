@@ -11,14 +11,14 @@ public interface IUserInformation {
      */
     void setName(String name);
     /*
-     * Get the age
+     * Get the user type
      * @param none
      */
-    int getAge();
+    String getTypeUser();
     /*
-     * @param int: set the age
+     * @param String: set typeUser
      */
-    void setAge(int age);
+    void setTypeUser(String typeUser);
     /*
      * Show name
      * @param none

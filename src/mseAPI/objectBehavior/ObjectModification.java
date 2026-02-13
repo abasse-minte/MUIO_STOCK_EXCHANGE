@@ -1,5 +1,5 @@
 package mseAPI.objectBehavior;
-
+import mseAPI.constantClass.constantClass;
 
 public final class ObjectModification {
     // ATTRIBUTES:
@@ -7,7 +7,7 @@ public final class ObjectModification {
     /*
     * static int Zero: constant
     */
-    public final static int Zero = 0;
+
 
 
 
@@ -43,7 +43,7 @@ public final class ObjectModification {
      */
     public static boolean containsLetter(String object){
         int objectLength = object.length();
-        for(int x = Zero; x < objectLength; x++){
+        for(int x = constantClass.zero; x < objectLength; x++){
             if (Character.isLetter(object.charAt(x))){
                 return true;
             }
@@ -62,18 +62,20 @@ public final class ObjectModification {
                 return Integer.parseInt(object);
             }
         } catch (NumberFormatException e){
-            return Zero;
+            return constantClass.zero;
         }
-        return Zero;
+        return constantClass.zero;
     }
 
     /*
      * check the spaces
      * @param none
      * return boolean
+     * return true if contain Space
+     * return false if don't contain space
      */
     public static boolean containSpace(String name){
-        return !name.contains(" ");
+        return name.contains(" ");
     }
 
     // try catch int, corriger toutes les erreurs

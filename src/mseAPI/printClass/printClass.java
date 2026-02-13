@@ -1,16 +1,7 @@
 package mseAPI.printClass;
+import mseAPI.constantClass.constantClass;
 
 public final class printClass {
-    // ATTRIBUTES:
-
-    /*
-    * static int Zero: constant
-    * static int One: constant
-    * static int Five: constant
-    */
-    final static int Zero = 0;
-    final static int One = 1;
-    final static int Five = 5;
 
 
 
@@ -45,13 +36,13 @@ public final class printClass {
         /*
         * Replace hook spaces from index 5 with the method name
          */
-        for(int x = Five; x < (Five + nameLength); x++){
-            hook.setCharAt(x,name.charAt((x - Five)));
+        for(int x = constantClass.five; x < (constantClass.five + nameLength); x++){
+            hook.setCharAt(x,name.charAt((x - constantClass.five)));
         }
 
         // Add ": OK"
-        for(int y = Zero; y < okLength; y++){
-            hook.setCharAt((Five + nameLength++ + One),ok.charAt(y));
+        for(int y = constantClass.zero; y < okLength; y++){
+            hook.setCharAt((constantClass.five + nameLength++ + constantClass.one),ok.charAt(y));
         }
 
         // print
@@ -80,36 +71,36 @@ public final class printClass {
         /*
          * find the center of the hook
          */
-        if (modulo(hookLength)==Zero){
+        if (modulo(hookLength)==constantClass.zero){
             middleHook = hookLength/2;
         } else {
-            middleHook = hookLength/2 + One;
+            middleHook = hookLength/2 + constantClass.one;
         }
 
         /*
          * find the center of the text
          */
-        if (modulo(textLength)==Zero){
+        if (modulo(textLength)==constantClass.zero){
             middleText = textLength/2;
         } else {
-            middleText = textLength/2 + One;
+            middleText = textLength/2 + constantClass.one;
         }
 
         start = middleHook - middleText;
-        if (addColon) start -= One;
+        if (addColon) start -= constantClass.one;
 
         /*
          * Replace hook spaces from index "start" with the text
          */
-        for(int x = Zero; x < textLength; x++){
+        for(int x = constantClass.zero; x < textLength; x++){
             hook.setCharAt(start, text.charAt(x));
-            start += One;
+            start += constantClass.one;
         }
 
         // add ":" if requested
         if(addColon){
             String colon = ":";
-            hook.setCharAt(start, colon.charAt(Zero));
+            hook.setCharAt(start, colon.charAt(constantClass.zero));
         }
 
         System.out.println(hook);
